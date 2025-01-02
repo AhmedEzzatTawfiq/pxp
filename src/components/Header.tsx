@@ -38,7 +38,7 @@ const Header = async () => {
         ) : (
           <Link
             href={"/signin"}
-            className="hover:bg-blue-600 hover:text-white text-blue-600 border-blue-600 border-[1px] hoverEffect lg:ml-12 bg-blue-50 px-3 text-sm sm:px-6 pt-1 pb-2 rounded-full sm:w-32 text-center sm:text-xl"
+            className="hover:bg-blue-600 hover:text-white text-blue-600 border-blue-600 border-[1px] hoverEffect lg:ml-12 bg-blue-50 px-3 text-sm sm:px-6 py-1 rounded-full sm:w-32 text-center sm:text-xl"
           >
             Sign in
           </Link>
