@@ -25,14 +25,7 @@ const CartContainer = () => {
     }
   };
 
-  useEffect(() => {
-    let price = 0;
-    cart.map((item) => {
-      price += item?.price * item?.quantity;
-      return price;
-    });
-    setTotalAmt(price);
-  }, [cart]);
+
 
   const createCheckout = async () => {
     const response = await fetch("/api/checkout", {

@@ -19,6 +19,7 @@ type Category = {
 type Learn = string;
 
 export interface ProductData {
+  price: number;
   title: string;
   image: ImageAsset;
   _createdAt: string;
