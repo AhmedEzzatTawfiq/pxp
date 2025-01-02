@@ -13,11 +13,11 @@ const Logo = ({ className }: {className?: string}) => {
           alt='logo'
           width={500}
           height={500}
-          className='w-20 h-20'
+          className='min-w-20 min-h-20 max-w-20 max-h-20'
           />
-          <h2 className={twMerge("text-2xl text-white font-bold hoverEffect relative overflow-hidden group", className)}>
+          {/* <h2 className={twMerge("text-2xl text-white font-bold hoverEffect relative overflow-hidden group", className)}>
           PXP
-          </h2>
+          </h2> */}
         </Link>
     </div>
   )
