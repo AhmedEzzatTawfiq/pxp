@@ -6,7 +6,7 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
-const SignInPage = async () => {
+const SignUpPage = async () => {
   const session = await auth();
 
   if (session?.user) {
@@ -17,13 +17,13 @@ const SignInPage = async () => {
     <Container className="pb-24 pt-20 flex flex-col items-center justify-center">
       <div className="w-full max-w-md bg-white p-10 rounded-lg shadow-lg">
         <h2 className="text-3xl font-bold text-center mb-4 text-gray-800">
-          Sign In
+          Sign Up
         </h2>
         <p className="text-center text-gray-600 mb-10 text-lg">
-          Choose a method to log in to your account.
+          Choose a method to create your account.
         </p>
         <div className="space-y-6">
-          {/* Google Sign-In */}
+          {/* Google Sign-Up */}
           <form
             action={async () => {
               "use server";
@@ -33,10 +33,10 @@ const SignInPage = async () => {
           >
             <Image src={googleImage} alt="Google" width={32} height={32} />
             <button type="submit" className="text-lg font-medium">
-              Sign in with Google
+              Sign up with Google
             </button>
           </form>
-          {/* GitHub Sign-In */}
+          {/* GitHub Sign-Up */}
           <form
             action={async () => {
               "use server";
@@ -46,22 +46,21 @@ const SignInPage = async () => {
           >
             <Image src={githubImage} alt="GitHub" width={32} height={32} />
             <button type="submit" className="text-lg font-medium">
-              Sign in with GitHub
+              Sign up with GitHub
             </button>
           </form>
         </div>
         <div className="mt-8 text-center">
           <p className="text-gray-600">
-            Don't have an account?{" "}
-            <Link href="/signup" className="text-blue-600 hover:text-blue-700 font-semibold">
-              Sign up
+            Already have an account?{" "}
+            <Link href="/signin" className="text-blue-600 hover:text-blue-700 font-semibold">
+              Sign in
             </Link>
           </p>
         </div>
-        {/* <SignInForm /> */}
       </div>
     </Container>
   );
 };
 
-export default SignInPage;
+export default SignUpPage;

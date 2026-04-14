@@ -11,53 +11,53 @@ import { MdClose } from 'react-icons/md';
 import { motion, AnimatePresence } from "framer-motion";
 import toast from 'react-hot-toast';
 
-interface Order{
+interface Order {
   id: string,
-  value:{
+  value: {
     amount: number,
     items: ProductData[]
   }
 }
 
 const Orders = () => {
-    const { data: session } = useSession();
-    const [expandedOrderId, setExpandedOrderId] = useState<string | null>(null);
-    const [ordersSnapshot, loading] = useCollection(
-      session &&
-        query(collection(db, "users", session?.user?.email as string, "orders"))
-    );
+  const { data: session } = useSession();
+  const [expandedOrderId, setExpandedOrderId] = useState<string | null>(null);
+  const [ordersSnapshot, loading] = useCollection(
+    session &&
+    query(collection(db, "users", session?.user?.email as string, "orders"))
+  );
 
-    const orders = ordersSnapshot?.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data()
-    })) as Order[];
+  const orders = ordersSnapshot?.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data()
+  })) as Order[];
 
-    
-    
-    const toggleDetails = (orderId: string) => {
-      setExpandedOrderId((prev) => (prev === orderId ? null : orderId));
-    };
 
-    const handleDeleteOrder = async (id: string) => {
-      try {
-        await deleteDoc(doc(db, "users", session?.user?.email as string, "orders",  id));
-      } catch (error:unknown) {
-        if(error instanceof Error) {
-          toast.error(error?.message)
-        } else {
-          toast.error("Unexpected error occurred");
-        }
-      } finally {
-        toast.success('Order deleted successfully');
+
+  const toggleDetails = (orderId: string) => {
+    setExpandedOrderId((prev) => (prev === orderId ? null : orderId));
+  };
+
+  const handleDeleteOrder = async (id: string) => {
+    try {
+      await deleteDoc(doc(db, "users", session?.user?.email as string, "orders", id));
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(error?.message)
+      } else {
+        toast.error("Unexpected error occurred");
       }
+    } finally {
+      toast.success('Order deleted successfully');
     }
+  }
 
   return (
     <div>
       {loading ? (
         <div className="flex flex-col flex-1 space-y-6 overflow-auto">
-          {Array.from({length:3}).map((_, i) => (
-            <div 
+          {Array.from({ length: 3 }).map((_, i) => (
+            <div
               key={i}
               className="w-full py-20 rounded-md shrink-0 animate-pulse bg-zinc-400"
             />
@@ -69,10 +69,10 @@ const Orders = () => {
             orders?.map((item) => (
               <div key={item.id}>
                 <Card className={
-                    expandedOrderId === item.id ? "border-darkOrange/30" : ""
-                  }>
+                  expandedOrderId === item.id ? "border-darkOrange/30" : ""
+                }>
                   <CardHeader>
-                  <CardTitle>
+                    <CardTitle>
                       Order ID:{" "}
                       <span className="text-base tracking-wide">
                         {item.id.slice(-10)}
@@ -112,17 +112,17 @@ const Orders = () => {
                   </CardContent>
                   <AnimatePresence>
                     {expandedOrderId === item.id && (
-                      <motion.div 
-                      initial={{opacity:0, height:0}}
-                      animate={{opacity:1, height: "auto"}}
-                      exit={{opacity:0, height:0}}
-                      transition={{duration: 0.3}}
-                    >
-                      <Card>
-                        <CardHeader>
-                          <CardTitle>Order Items</CardTitle>
-                        </CardHeader>
-                        <CardContent>
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <Card>
+                          <CardHeader>
+                            <CardTitle>Order Items</CardTitle>
+                          </CardHeader>
+                          <CardContent>
                             <Table>
                               <TableHeader>
                                 <TableRow>
@@ -141,7 +141,7 @@ const Orders = () => {
                               <TableBody>
                                 {item?.value?.items?.map(
                                   (product: ProductData) => (
-                                    <TableRow key={product?._id}>
+                                    <TableRow key={product.slug.current}>
                                       <TableCell>{product?.title}</TableCell>
                                       <TableCell className="text-center">
                                         <FormattedPrice
@@ -164,8 +164,8 @@ const Orders = () => {
                               </TableBody>
                             </Table>
                           </CardContent>
-                      </Card>
-                    </motion.div>
+                        </Card>
+                      </motion.div>
                     )}
                   </AnimatePresence>
                 </Card>

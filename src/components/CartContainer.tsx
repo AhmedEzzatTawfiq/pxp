@@ -58,7 +58,7 @@ const CartContainer = () => {
           </div>
           <div className="mt-5">
             {cart.map((item) => (
-              <CartItem key={item?._id} item={item} cart={cart} />
+              <CartItem key={item.slug.current} item={item} cart={cart} />
             ))}
           </div>
           <button

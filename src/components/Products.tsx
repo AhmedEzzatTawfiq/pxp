@@ -18,7 +18,7 @@ const Products = async ({ limit }: ProductsProps = {}) => {
     <div>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8'>
         {displayProducts?.map((item) => (
-          <ProductCard key={item?._id} item={item} />
+          <ProductCard key={item.slug.current} item={item} />
         ))}
       </div>
       {limit && (

@@ -26,7 +26,7 @@ const ProductCard = ({ item }: { item: ProductData }) => {
               className='w-full h-60 object-cover group-hover:scale-105 hoverEffect'
             />
           </Link>
-        </div> 
+        </div>
         <div className='px-4 flex flex-col justify-between mt-3 h-[136px]'>
 
           <div className='flex flex-col gap-1'>
