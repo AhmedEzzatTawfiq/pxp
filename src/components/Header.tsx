@@ -1,3 +1,5 @@
+"use client";
+
 import Container from "./Container";
 import Link from "next/link";
 import SearchInput from "./SearchInput";
@@ -5,23 +7,31 @@ import { navBarList } from "../constants";
 import Logo from "./Logo";
 import DropDown from "./DropDown";
 import UserDropdown from "./UserDropdown";
-import { auth } from "@/auth";
+import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 
-const Header = async () => {
-  const session = await auth();
+const Header = () => {
+  const { data: session } = useSession();
+  const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <header className="w-full h-16 bg-black border-b-[1px] border-b-lightText/40 sticky z-50 -top-1">
       <Container className="h-full flex items-center justify-between gap-5 lg:gap-10">
         <div className="md:hidden">
-        <DropDown />
+          <DropDown />
         </div>
         <Logo />
         <SearchInput />
         <div className="hidden text-white md:inline-flex lg:gap-9 gap-4 items-center">
           {navBarList?.map((item) => (
             <Link
-              className=" hoverEffect"
+              className={`hoverEffect ${mounted && pathname === item.link ? "text-blue-400" : ""}`}
               key={item?.title}
               href={item.link}
             >
@@ -44,7 +54,7 @@ const Header = async () => {
           </Link>
         )}
 
-        
+
       </Container>
     </header>
   );

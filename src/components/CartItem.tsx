@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from 'react'
 import { ProductData } from '../../type'
 import { ImCross } from 'react-icons/im'

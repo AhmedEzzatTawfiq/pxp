@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   title: "PXP",
   description: "Courses website",
 };
- 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -33,13 +33,14 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
       >
         <Layout>
           <Header />
           {children}
           {/* <SideBar /> */}
           <Footer />
-          <Toaster 
+          <Toaster
             position="bottom-right"
             toastOptions={{
               style: {

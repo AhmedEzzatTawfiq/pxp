@@ -4,10 +4,6 @@ export const navBarList = [
     link: "/"
   },
   {
-    title: "About",
-    link: "/about"
-  },
-  {
     title: "Diplomas",
     link: "/shop"
   },
@@ -15,7 +11,7 @@ export const navBarList = [
   //   title: "My Courses",
   //   link: "/cart"
   // },
-  
+
 ];
 
 export const footerData = [

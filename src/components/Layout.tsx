@@ -10,7 +10,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <SessionProvider>
       <Provider store={store}>
-        <PersistGate loading={<Loader />} persistor={persistor}>
+        <PersistGate loading={null} persistor={persistor}>
           {children}
         </PersistGate>
       </Provider>

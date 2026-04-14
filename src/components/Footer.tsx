@@ -33,7 +33,7 @@ const Footer = () => {
                     </a>
                 </div>
                 <p className="text-gray-400">
-                    © {new Date().getFullYear()} PXP Academy. All rights reserved.
+                    © 2026 PXP Academy. All rights reserved.
                 </p>
             </div>
         </footer>

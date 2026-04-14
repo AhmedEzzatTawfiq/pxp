@@ -6,12 +6,12 @@ import About from "@/components/About";
 
 
 export default function Home() {
-  return ( 
+  return (
     <Container className="py-10">
       <Banner />
       {/* <About /> */}
       <Facilities />
-      <Products />
+      <Products limit={4} />
     </Container>
   );
 }
